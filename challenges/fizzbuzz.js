@@ -13,9 +13,25 @@ fizzbuzz(16);
 */
 
 const fizzbuzz = num => {  
-  
+  //initialize empty array
+  let resultArr = [];
+  //iterate to num, adding each num to array
+  for(let i = 1; i <= num; i++) {
+      //conditional statement to add 'fizzbuzz' if num is divisible by 3 AND 5
+      if(i % 3 === 0 || i % 5 === 0) {
+        if(i % 3 === 0 && i % 5 === 0) resultArr.push('fizzbuzz');
+        //conditional to add fizz if number is divisible by 3 but not 5
+        //conditional to add buzz if number is divisible by 5 but not 3
+        if(i % 3 === 0 && i % 5 !== 0) resultArr.push('fizz');
+        if(i % 5 === 0 && i % 3 !== 0) resultArr.push('buzz');
+      }
+      else resultArr.push(i);
+  }
+  //return new array
+  return resultArr
 };
 
+console.log(fizzbuzz(16))
 /*
 
 Extension: 

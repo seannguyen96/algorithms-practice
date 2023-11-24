@@ -16,9 +16,17 @@ https://m.wikihow.com/Read-Binary
 */
 
 function binToDec(binString){
-
+    //multiply each binary digit by 2^it's position (binary is read from RIGHT TO LEFT)
+        //add results together
+    let result = 0
+    let placeNumber = 0;
+    for(let index = binString.length - 1; index >= 0; index--) {
+        const digit = binString[index];
+        result += (digit * (2 ** placeNumber))
+        placeNumber++;
+    }
+    return result
 }
-
 
 
 module.exports = {binToDec};
