@@ -18,9 +18,25 @@
 
 
 const twoSum = (arr, target) => { 
-
+  let answer = false;
+  let magicNum;
+  let set = new Set(arr);
+  for(let i = 0; i < arr.length; i++){
+    if(magicNum !== arr[i]) {
+      magicNum = target - arr[i];
+      if(set.has(magicNum)) {
+        answer = true; 
+        return answer;
+      }
+    }
+  }
+  return answer;
 }
+const nums = [2, 5, 11, 15];
+console.log(twoSum(nums, 7));
 
+const nums2 = [1, 4, 6, 12, 9];
+console.log(twoSum(nums2, 2));
 /*
 Extension:
 Given an array of numbers and a target number, 
@@ -32,11 +48,25 @@ The straightforward way to solve this problem would take O(n³) time. Is it poss
 */
 
 const threeSum = (arr, target) => { 
-
+  let answer = false;
+  let magicNum = 1.337;
+  let set = new Set(arr);
+  //iterate through array for first and second value
+  for(let i = 0; i < arr.length; i++){
+    for(let j = 0; j<arr.length; j++) {
+      if(j !== i) magicNum = target - arr[i] - arr[j];
+      console.log(magicNum);
+      if(set.has(magicNum)) {
+        answer = true; 
+        return answer;
+      }
+    }
+  }
+  return answer;
 }
-
-
-
-
+const nums3 = [2, 4, 1, 11, 15];
+const nums4 = [2, 4, 1, 11, 15];
+console.log(threeSum(nums3, 7));
+console.log(threeSum(nums4, 20));
 
 module.exports = { twoSum, threeSum };

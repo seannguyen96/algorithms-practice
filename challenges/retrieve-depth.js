@@ -23,9 +23,21 @@ is within "depth 3". No number is deeper.
 */
 
 const retrieveDepth = (arr, depth) => {
-  
+  let resultArr = [];
+  //flatten array for each depth
+  while (depth > 1) {
+    arr = arr.flat();
+    depth--;
+  }
+  for(let index of arr){ 
+    //checks if current index is a number type or object type
+    if(typeof index === 'number') resultArr.push(index);
+  }
+  return resultArr
 };
-
+console.log(retrieveDepth([2, [4, [7], 1], 5], 1));
+console.log(retrieveDepth([2, [4, [7], 1], 5], 2));
+console.log(retrieveDepth([2, [4, [7], 1], 5], 3));
 /*
 
 Extension:
@@ -54,7 +66,23 @@ flattened array
 */
 
 const flattenDepth = (arr, depth) => {
-  
+  while (depth > 0) {
+    arr = arr.flat();
+    depth--;
+  }
+  return arr
 };
+
+console.log(flattenDepth([2, [4, [7], 1], 5], 0))
+
+
+console.log(flattenDepth([2, [4, [7], 1], 5], 1))
+
+
+console.log(flattenDepth([2, [4, [7], 1], 5], 2))
+
+
+console.log(flattenDepth([2, [4, [7], 1], 5], 3))
+
 
 module.exports = {retrieveDepth, flattenDepth};
