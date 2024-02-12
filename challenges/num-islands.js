@@ -9,8 +9,8 @@ EXAMPLE 1:
 
 Input:
 [
-  [0, 1, 1, 1, 0],
-  [1, 1, 0, 1, 0],
+  [0, 1, 1, 1, 0],  [0][0] [0][1]
+  [1, 1, 0, 1, 0],  
   [1, 1, 0, 0, 0],
   [0, 0, 0, 0, 0]
 ]
@@ -31,7 +31,37 @@ that the grid will have at least one element.
 */
 
 const numIslands = grid => {
-  
+  let islandCount = 0;
+  console.log('test')
+  //helper func for marking islands
+  function depthFirstSearch(grid, row, col) {
+    if (grid[row][col] === '0' || !grid[row][col]) return;
+    grid[row][col].visited = true;
+    depthFirstSearch(grid, row--, col)  // up
+    depthFirstSearch(grid, row++, col)  // down
+    depthFirstSearch(grid, row, col--)  // left
+    depthFirstSearch(grid, row, col++)  // right
+  }
+  //iterate over each cell in grid
+    //increment islandCount if 1
+      //mark connected 1s as visited to prevent over counting
+  for(let row = 0; row < grid.length; row++) {
+    for(let col = 0; col < row.length; col++) {
+      let current = grid[row][col];
+      if(current === 1) islandCount++;
+      depthFirstSearch(grid, row, col);
+    }
+  }
+  //return islandCount
+  return islandCount;
 };
+
+const Input = [
+  [1, 1, 0, 0, 0],
+  [1, 1, 0, 0, 0],
+  [0, 0, 1, 0, 0],
+  [0, 0, 0, 1, 1]
+]
+console.log(numIslands(Input));
 
 module.exports = {numIslands};

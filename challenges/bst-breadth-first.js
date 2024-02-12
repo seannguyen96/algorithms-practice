@@ -36,7 +36,25 @@ Utilizing recursion is not necessary, nor recommended.
 */
 
 const bfs = (root, callback) => {
-  
+  //empty array to store node values
+  const result = [];
+  //define queue
+  const queue = [root];
+
+  //create while loop
+  while(queue.length > 0) {
+    const current = queue.shift(); //remove first node in queue and save it to current
+    if (current === null) continue; //check if current node is not null/a leaf node
+    result.push(current.value); //push node value to result array
+
+    //add child nodes to the queue
+    console.log("result: ",result)
+    if(current.left) queue.push(current.left);
+    if(current.right) queue.push(current.right);
+  }
+  result.forEach(callback);
+  //return final array
+  return result
 };
 
 /*

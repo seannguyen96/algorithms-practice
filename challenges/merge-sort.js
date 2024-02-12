@@ -13,7 +13,30 @@
 */
 
 const mergeSort = array => {
+  let leftHalf;
+  let rightHalf;
+  let middle = array.length / 2
+  let resultArray = [];
 
+  while(array.length > 1) {
+    leftHalf = array.slice(0, middle);
+    console.log("leftHalf:", leftHalf);
+    mergeSort(leftHalf); //[5, 2, 1] //[5]
+    rightHalf = array.slice(middle, array.length) //[2, 1]
+    console.log('rightHalf:', rightHalf);
+    mergeSort(rightHalf);
+
+    if(rightHalf[0] < leftHalf[0]) {
+      let temp = leftHalf[0];
+      leftHalf[0] = rightHalf[0];
+      rightHalf[0] = temp;
+      console.log('we hit the if statement');
+    }
+  }
+  return resultArray;
 }
+console.log(mergeSort([5, 2, 1, 3, 6, 4]))
+
+
 
 module.exports = { mergeSort };

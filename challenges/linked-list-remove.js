@@ -29,7 +29,24 @@ function Node(val) {
 }
 
 const linkedListRemove = (ll, val) => {
+  console.log(ll.head)
+  if(!ll.head || !ll.head.next) return this.head;
+  let previous = null;
+  let currentNode = this.head;
 
+  while(currentNode){
+    //check current node for val
+    //if val, remove from ll
+    if(currentNode===val) {
+      //set pointers
+      previous.next = currentNode.next;
+      return currentNode
+    }
+    else { 
+      currentNode = ll.head.next;
+    }
+  }
+  return currentNode;
 };
 
 

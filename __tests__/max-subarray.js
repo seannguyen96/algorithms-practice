@@ -28,7 +28,7 @@ describe('maxSubarray test', () => {
   });
 });
 
-xdescribe('kadanesMaxSubarray test', () => {
+describe('kadanesMaxSubarray test', () => {
   let input, output;
   it('handles max value subarray smaller than array - example 1', () => {
     input = [1, -2, 3, 10, -4, 7, 2, -5];

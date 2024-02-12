@@ -10,9 +10,14 @@ findInOrderedSet(nums, 2);  -> false
 */
 
 const findInOrderedSet = (array, target) => {
-
+  const orderedSet = new Set(array);
+  if(orderedSet.has(target)) return true;
+  return false;
 };
 
+const nums = [-3, 0, 8, 13, 37]
+console.log(findInOrderedSet(nums, 0));  
+console.log(findInOrderedSet(nums, 2));  
 
 /*
 Extension:
@@ -34,7 +39,38 @@ findIn2dMatrix(matrix, 42); -> false
 */
 
 const findIn2dMatrix = (matrix, target) => {
+  const matrixLength = matrix.length; //3
+  let matrixMiddle = Math.floor(matrix.length / 2); //1
+  let currentMatrix = matrix[matrixMiddle]; //[6, 7, 8, 13, 37]
+  const firstIndex = currentMatrix[0];
+  const lastIndex = currentMatrix[currentMatrix.length - 1];
+  console.log(lastIndex);
+
+  console.log(currentMatrix)
+
+  //check middle 
+  const middleIndex = Math.floor(currentMatrix.length / 2) //2
+  if(target === currentMatrix[middleIndex]) { //match
+    return true;
+  }
+  if(target > currentMatrix[middleIndex]) { //target is greater than num
+    //we want right half
+    matrix = matrix.slice(currentMatrix[middleIndex], matrix[lastIndex]);
+    console.log(matrix)
+  }
+  //check first
+
+  //check last
 
 };
+
+const matrix = [
+  [-3, -1,  2,  4,  5],
+  [ 6,  7,  8, 13, 37],
+  [41, 49, 50, 61, 75]
+];
+
+console.log(findIn2dMatrix(matrix, 13));
+console.log(findIn2dMatrix(matrix, 42)); 
 
 module.exports = { findInOrderedSet, findIn2dMatrix };

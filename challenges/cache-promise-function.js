@@ -20,8 +20,27 @@ that's convertable to JSON. (This is just the memoize problem)
 */
 
 const memoize = func => {
-  
+  console.log(func)
+  cache = {};
+  return (arg) => {
+    //check if cache has property
+    if(cache.hasOwnProperty(func(arg))) {
+      console.log("found in cache");
+      return cache[func(arg)]
+    }
+    else {
+      console.log('updating cache')
+      result = func(arg);
+      return cache[func(arg)] = result;
+    }
+  }
 };
+const add5 = (num) => num+5;
+console.log(add5(10));
+const add5memo = memoize(add5);
+console.log(add5memo(5));
+console.log(add5memo(5));
+
 
 /*
 

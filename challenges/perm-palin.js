@@ -15,9 +15,37 @@
  */
 
 const permPalin = str => {
+  let cache = {};
+  let oddCount = 0;
+ 
+  if(typeof str !== "string") return false;
+  if(str.length <= 0) return true;
+  if(str.length === 1) return true;
 
+  //if cached, increment cached value. otherwise create cache
+  for(let char of str) {
+    if (Object.hasOwn(cache, char)) {
+      cache[char]++;
+      // console.log('updated cache result: ', cache[char]);
+    } else
+    cache[char] = 1;
+    // console.log('new cache entry: ', cache[char]);
+  }
+  //  get odd char count
+  let objValArr = Object.values(cache);
+  for(let value of objValArr){
+    if(value % 2 !== 0) oddCount++;
+  }
+  if(oddCount > 1) return false;
+  else if(str.length % 2 === 1 && oddCount <= 1) return true;
+  else if(str.length % 2 === 0 && oddCount === 0) return true;
+  else return false;
 };
 
+console.log(permPalin('cat'));
+console.log(permPalin('abab'));
+console.log(permPalin('cbaba'));
+console.log(permPalin('cbac'));
 /* 
  * Extension: Solve in constant space complexity.
  */

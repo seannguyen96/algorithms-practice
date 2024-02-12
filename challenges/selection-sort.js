@@ -14,8 +14,22 @@ whole array, the array will end up being sorted.
 */
 
 const selectionSort = array => {
-  
+  for(let i = 0; i < array.length - 1; i++){
+    let min = i;
+    for(let j = i+1; j < array.length; j++) {
+      //check if arr[j] is lower than arr[min]
+      if(array[j] < array[min]) {
+        //temp var to save value. update the old min with the new min
+        let temp = array[min];
+        array[min] = array[j];
+        array[j] = temp;
+      }
+    }
+  }
+  return array;
 };
+
+console.log(selectionSort([9, 10, 3, 5, 11, 6]))
 
 /*
 
@@ -41,7 +55,19 @@ etc.
 */
 
 const insertionSort = array => {
-  
+  //first value okay
+  let i, j, current;
+  for(i = 1; i < array.length; i++) {
+    current = array[i];
+    j = i - 1;
+    
+    while ( j >= 0 && array[j] > current){
+      array[j + 1] = array[j];
+      j = j - 1;
+    }
+    array[j+1] = current;
+  }
+  return array
 };
 
 module.exports = {selectionSort, insertionSort};

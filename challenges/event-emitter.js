@@ -31,7 +31,7 @@ function EventEmitter() {
 }
 
 EventEmitter.prototype.on = function(funcName, func) {
-
+  
 };
 
 EventEmitter.prototype.trigger = function(funcName, ...args) {

@@ -19,9 +19,36 @@ The strings must be returned in the order suggested above.
 */
 
 const rps = n => {
-  
+  let result = [];
+  if(n === 0) result = [''];
+
+  const rps = ['r', 'p', 's'];
+  if(n===1) return rps;
+
+  //iterate through each index of rps and append it to each index of result
+  while(n>1) {
+    // rps[0] + rps[0] = rr
+    // rps[0] + rps[1] = rp
+    // rps[0] + rps[2] = rs
+    // rps[1] + rps[0] = pr
+    // rps[1] + rps[1] = pp
+    // rps[1] + rps[2] = ps
+    for(let i = 0; i < rps.length; i++) {
+      for(let j = 0; j< rps.length; j++) {
+        console.log(rps[i] + rps[j])
+        result.push(rps[i] + rps[j])
+      }
+    }
+    n--;
+  }
+
+  return result;
 };
 
+console.log(rps(0));
+console.log(rps(1));
+console.log(rps(2));
+console.log(rps(3));
 /*
 
 Extension:

@@ -26,8 +26,42 @@ of 6.
 */
 
 const subsetSumClosest = (nums, target) => {
-  
+  //  keep track of lowest difference
+  let lowestDiff = Infinity;
+ 
+  //  iterate through each element in the array
+  for(let subset = 0; subset < (2 ** nums.length); subset++ ){
+    let sum = 0;
+    //  calculate the sum of the current subset
+    //  get the absolute difference between the target and current sum
+    //  update the lowest diff if current subset has a smaller diff
+    for(let i = 0; i < nums.length; i++) {
+      sum+=nums[i];
+      console.log(sum);
+      //  if absolute value of the sum 
+      let thisDiff = Math.abs(target-sum);;
+      if(sum - target) return 0;
+    }
+  }
+   
+
+  //  return lowestDiff
+
+
+  //iterate trough each num in array and do some maths
+  if(lowestDiff === Infinity) lowestDiff = target;
+  return lowestDiff;
 };
+
+
+console.log(subsetSumClosest([3, 7, 8, 2], 5)) //0
+console.log(subsetSumClosest([3, 7, 8, 2], 6)) //1
+console.log(subsetSumClosest([1, -3, 2], 5))   //2
+console.log(subsetSumClosest([2], 5))          //3
+console.log(subsetSumClosest([], 5))           //5
+
+
+
 
 /*
 

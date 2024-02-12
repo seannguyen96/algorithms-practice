@@ -30,8 +30,58 @@ characters. How do we keep track of this "window"?
 
 */
 
-const substringNonrepeating = str => {
-  
+// const substringNonrepeating = str => {
+//   let window = new Set([]);
+//   let maxLength = 0;
+//   let previousChar;
+  //  iterate through each character of str
+  //  add char to set if char not in set
+  //  update maxLength if needed
+  //  reset window to the previous char
+  //  add char
+  //  update str
+  // while(str.length) {
+  //   console.log(str[0])
+  //   if(!window.has(str[0])) {
+  //     window.add(str[0])
+  //     previousChar = str[0];
+  //     if (window.size > maxLength) maxLength = window.size;
+  //   }else{
+  //      window.clear();
+  //      window.add(previousChar);
+  //      window.add(str[0])
+  //      str = str.slice(1, str.length);
+  //      console.log(str);
+  //   }
+  //   return maxLength
+  // };
+
+  const substringNonrepeating = str => {
+    let window = new Set([]);
+    let maxLength = 0;
+    let previousChar;
+
+  for(let char of str) {      //  iterate through each character of str
+      if(!window.has(char)) { //  update maxLength if needed
+        window.add((char));   //  add char to set if char not in set
+        previousChar = char;
+        if (window.size > maxLength) maxLength = window.size;
+      }
+      //  reset window to the previous char
+      //  add char
+      else {                  //  reset window to the previous char
+        window.clear();       //  add char
+        window.add((previousChar));
+        window.add(char);
+      }
+    }
+  return maxLength;
 };
+
+console.log(substringNonrepeating("abcabcbb"));
+console.log(substringNonrepeating("bbbbb"));
+console.log(substringNonrepeating("pwwkew"));
+console.log(substringNonrepeating(""));
+console.log(substringNonrepeating("lolk"));
 
 module.exports = {substringNonrepeating};

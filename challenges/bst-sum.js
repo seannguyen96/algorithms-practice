@@ -14,8 +14,26 @@ function.
 */
 
 const bstSum = root => {
-  
+  const treeTraversal = (node, result = 0) => {
+    if(node===null) return result;
+    console.log(node);
+    console.log(node.value)
+    result += node.value;
+    console.log(result)
+    treeTraversal(node.left);
+    treeTraversal(node.right);
+  }
+  console.log(treeTraversal(root));
 };
+const newBST = new BinarySearchTree(4);
+let newNode = new BinarySearchTree(1);
+newBST.left = newNode;
+newBST.right = new BinarySearchTree(7);
+console.log(newBST);
+console.log(bstSum(newBST))
+
+
+
 
 /*
 

@@ -3,8 +3,6 @@ function BinarySearchTree(value) {
   this.right = null;
   this.left = null;
 }
-
-
 /*
 
 Given the root of a binary search tree, determine the difference of the maximum
@@ -29,8 +27,36 @@ returns 8, becuase 9 - 1 = 8
 */
 
 const bstMinMax = root => {
-  
+  let queue = [root];
+  let bstArr = [];
+  let min, max, result;
+
+  //iterate through bst, adding values to it
+  while(queue.length) {
+    const node = queue.shift();
+    //console.log(node);
+    bstArr.push(node.value);
+    if(node.left) queue.push(node.left);
+    if(node.right) queue.push(node.right);
+  }
+  //find min and max from arr
+  console.log(bstArr);
+  min = Math.min(bstArr);
+  max = Math.max(bstArr);
+  result = max - min;
+  return result;
+
 };
+const newBST = new BinarySearchTree(4);
+newBST.left = 2;
+newBST.left.left = 1;
+newBST.left.right = 3;
+newBST.right = 7;
+newBST.right.right = 9;
+newBST.right.left = null;
+console.log(newBST);
+console.log(bstMinMax(newBST));
+
 
 /*
 

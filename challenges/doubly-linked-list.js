@@ -32,7 +32,20 @@ function ListNode(val) {
 This method should add a node to the end of the doubly linked list
  */
 DoublyLinkedList.prototype.add = function (val) {
-
+  const newNode = new ListNode(val);
+  //check if list has any nodes, if not, insert at beginning
+  if(this.head.next === null){
+    //connect new node's previous, new node's next
+    newNode.prev = this.head;
+    this.head.next = newNode;
+  } else {
+    //iterate through linkedlist while there are nodes
+      let current = this.head;
+      while(current.next){
+        current = current.next;
+      }
+      current.next = newNode
+  }
 };
 
 /*

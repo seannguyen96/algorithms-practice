@@ -39,9 +39,17 @@ function BinaryTree(value) {
   this.left = null;
   this.right = null;
 }
-
-const validBST = tree => {
-
+const validBST = (tree, root=null) => {
+  if(tree.value == null) return;
+  //identify root
+  if(root=null) root = tree.value;
+  console.log("root:", root)
+  //traverse left side of tree
+  if(tree.left && (tree.left > root)) return false;
+  if(tree.right && (tree.right < root)) return false;
+  if(tree.left )
+  validBST(tree.left);
+  validBST(tree.right);
 }
 
 module.exports = { BinaryTree, validBST };

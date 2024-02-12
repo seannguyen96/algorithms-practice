@@ -24,7 +24,19 @@ function Node(value) {
  */
 
 const reverseLinkedList = head => {
+  if(!head || !head.next) return head;
 
+  let previous = null;
+
+  while (head) {
+    let tempNode = head.next; //save next or you lose it
+    head.next = previous;     //reverse pointer 
+    previous = head;          //increment previous to current node
+    head = tempNode;          //increment current node to next node or null at end of list
+  }
+
+  return previous
+  
 };
 
 module.exports = { Node, reverseLinkedList }
