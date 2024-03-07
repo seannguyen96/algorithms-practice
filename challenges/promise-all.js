@@ -20,7 +20,31 @@ for info on the Promise constructor.
 */
 
 const promiseAll = promises => {
-  
+  const promiseArr = [];
+  let index = 0;
+
+  return new Promise((resolve, reject) => {
+    function processPromise() {
+      if (index === promises.length) {
+        resolve(promiseArr);
+        return;
+      }
+      Promise.resolve(promises[index])
+        .then(result => {
+          promiseArr[index] = result;
+          index++;
+          processPromise();
+        })
+        .catch(reject => {
+          promiseArr[index] = error;
+          index++;
+          processPromise();
+        });
+    }
+    processPromise();
+
+  });
+ 
 };
 
 
