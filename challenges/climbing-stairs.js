@@ -31,10 +31,53 @@ const climbStairs = (length) => {
     options[2] = 2;
 
     for(let step = 3; step <= length; step++) {
-      ways[step] = ways[step - 1] + ways[step - 2];
+      options[step] = options[step - 1] + options[step - 2];
     }
 
-    return ways[length];
+    return options[length];
 };
 
 //now use closure!
+
+console.log(climbStairs(1));
+console.log(climbStairs(2));
+console.log(climbStairs(3));
+console.log(climbStairs(4));
+
+
+const calculateCacheStairs = (stairs) => {
+  let steps = {0: 0,
+              1: 1, 
+              2: 2};
+  let length = stairs;
+  return (length) => {
+    //Memoization
+    if(!Object.hasOwn(steps, length)) {
+          //base cases
+      if(length <= 0) return 0;
+      if(length === 1) return 1;
+      if(length === 2) return 2;
+      
+      // steps[length] = steps[length - 1] + steps[length - 2];
+      steps[length] = calculateCacheStairs()(length - 1) + calculateCacheStairs()(length - 2);
+      return steps[length];
+    } else {
+      console.log(`cached value found at ${length}`);
+      return steps[length];
+    }
+  } ; 
+  
+};
+
+const cacheStairs = calculateCacheStairs();
+
+console.log(cacheStairs(1));
+console.log(cacheStairs(2));
+console.log(cacheStairs(3));
+console.log(cacheStairs(3));
+console.log(cacheStairs(4));
+console.log(cacheStairs(5));
+console.log(cacheStairs(6));
+console.log(cacheStairs(7));
+console.log(cacheStairs(8));
+console.log(cacheStairs(9));
