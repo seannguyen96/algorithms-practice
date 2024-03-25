@@ -83,5 +83,6 @@ console.log(substringNonrepeating("bbbbb"));
 console.log(substringNonrepeating("pwwkew"));
 console.log(substringNonrepeating(""));
 console.log(substringNonrepeating("lolk"));
+console.log(substringNonrepeating([7,6,5,7,3,7]));
 
 module.exports = {substringNonrepeating};
