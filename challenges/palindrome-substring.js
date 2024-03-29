@@ -16,5 +16,29 @@
 // output: # of substrings w a palindrome
 
 const palindromeCount = (str) => {
+  if(str.length === 1) return 1//  if string length === 1 return 1
+  let count = 0;
+  console.log(str.length)
+  //  expand around the center helper function
+  function compare(left, right) {
+    while(left >= 0 && right < str.length && str[left] === str[right]) {
+      count++;
+      left--;
+      right++;
+    }
+  };
 
+  for(i = 0; i < str.length; i++) {
+    compare(i, i); //odd
+    compare(i, i + 1); //even
+  }
+  
+  //return count
+  return count;
 }
+
+console.log(palindromeCount('aa')); // 3 
+console.log(palindromeCount('cat')); // 3 //a //t //c
+console.log(palindromeCount('aaa')); // 6
+console.log(palindromeCount('racecar')); // 6
+console.log(palindromeCount('penut')); // 6
