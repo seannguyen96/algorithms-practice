@@ -1,0 +1,4 @@
+{
+  // Show variable values inline in editor while debugging.
+  "debug.inlineValues": "on",  
+}
