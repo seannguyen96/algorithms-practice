@@ -8,6 +8,7 @@ function update(arg) {
 } 
 console.log(update(x));
 y = 2; 
+y = 3;
 // ?; 
 const result = update(x); //
 
