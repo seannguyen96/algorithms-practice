@@ -29,18 +29,19 @@ const maxProductSubArray = (arr) => {
   for(let i = 1; i < arr.length; i++) {
     const num = arr[i];
     // console.log([maxProd, minProd]);
+    //if multiplying by a negative number, the max and min values get flipped
     if(num < 0) {
       [maxProd, minProd] = [minProd, maxProd];
-      console.log([maxProd, minProd])
+      // console.log([maxProd, minProd])
     }
     //  store max and min products ending at current position
     maxProd = Math.max(num, maxProd * num);
     minProd = Math.min(num, minProd * num);
-    console.log([maxProd])
-    console.log([minProd])
+    // console.log([maxProd])
+    // console.log([minProd])
 
     result = Math.max(result, maxProd);
-    console.log(result);
+    // console.log(result);
   }
 
   return result;
