@@ -5,12 +5,13 @@
 // The left and right subarray are not sorted.
 // The elements rearrange is done in place, that is, there is no need to create new array.
 
-
+//  2. call the helper funciton. after returning pivot index, use recursion to call helper 
+//  on the left and right subarray
 function quickSort (arr, left = 0, right = arr.length - 1) {
   if (left < right) {
     let pivotIndex =  pivot(arr, left, right);
-      quickSort(arr, left, pivotIndex-1);
-      quickSort(arr, pivotIndex+1, right);
+    quickSort(arr, left, pivotIndex-1);
+    quickSort(arr, pivotIndex+1, right);
   }
   return arr;
 }
