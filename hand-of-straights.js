@@ -31,36 +31,69 @@
     //  otherwise go on to next card in sortedHand (index++)
     //  return false early, otherwise return true
 
-function straights(hand, groupSize) {
-  let straight = false;
-  if(hand.length % groupSize != 0) return straight;
+// function straights(hand, groupSize) {
+//   if(hand.length % groupSize != 0) return false;
 
-  let sortedHand = hand.sort();
-  let handSize = hand.length / groupSize;
-  let newSet = new Set([]);
-  let index = 0;
-  let setStart;
+//   let sortedHand = hand.sort();
+//   let handSize = hand.length / groupSize;
+//   let newSet = new Set([]);
+//   let index = 0;
+//   let setStart;
 
-  while (sortedHand.length > 0 && newSet.size < handSize){ 
-    const card = sortedHand[index];
-    if(!newSet.has(card)) { 
-      if(newSet.size === 0) setStart = card;
-      newSet.add(card);
-      sortedHand.splice(index, 1);
-      index = 0;
-    } else {
-        index++
-    }
-    if(newSet.size === handSize) {
-      for(let i = 1; i < handSize; i++) {
-        if(!newSet.has(setStart + i)) return false
+//   while (sortedHand.length > 0 && newSet.size < handSize){ 
+//     const card = sortedHand[index];
+//     if(!newSet.has(card)) { 
+//       if(newSet.size === 0) setStart = card;
+//       newSet.add(card);
+//       sortedHand.splice(index, 1);
+//       index = 0;
+//     } else {
+//         index++
+//     }
+//     if(newSet.size === handSize) {
+//       for(let i = 1; i < handSize; i++) {
+//         if(!newSet.has(setStart + i)) return false
+//       }
+//     }
+//   }
+//   return true
+// }
+
+
+//  * REVISION *  
+//  count frequencies of each card
+//  sort unique cards
+//  form groups, starting at the lowest unique card
+//  update frequency of each card used in group if successful
+
+function allStraights(hand, groupSize) {
+  console.log(hand)
+  if(hand.length % groupSize !== 0) return false;
+
+  const cardCount = {};
+  for(let card of hand) {
+    cardCount[card] = (cardCount[card] || 0) + 1;
+    console.log(cardCount);
+  }
+  const uniqueCards = Object.keys(cardCount).map(Number).sort((a, b) => a - b);
+  console.log(uniqueCards)
+  
+  for(let card of uniqueCards) {
+    const count = cardCount[card];
+    if(count > 0) { //need to form count groups starting with 'card'
+      for(let j = 0; j < groupSize; j++) {
+        const nextCard = card + j;
+        if((cardCount[nextCard] || 0 ) < count) return false;
+        cardCount[nextCard] -= count;
       }
     }
   }
-  return true
+  return true;
 }
 
 const hand1 = [1,2,3,6,2,3,4,7,8], groupSize1 = 3;
 const hand2 = [1,2,3,4,5], groupSize2 = 4;
-console.log(straights(hand1, groupSize1));
-console.log(straights(hand2, groupSize2));
+// console.log(straights(hand1, groupSize1));
+// console.log(straights(hand2, groupSize2));
+console.log(allStraights(hand1, groupSize1));
+console.log(allStraights(hand2, groupSize2));
