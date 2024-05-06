@@ -26,6 +26,8 @@ Constraints:
  * @param {number} target
  * @return {boolean}
  */
+
+//  possibly a binary search algo 
 var searchMatrix = function(matrix, target) {
     
 };
