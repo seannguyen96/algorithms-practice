@@ -28,6 +28,32 @@ Constraints:
  */
 
 //  possibly a binary search algo 
-var searchMatrix = function(matrix, target) {
-    
+//  two pointers, one for low and one for high
+function searchMatrix(matrix, target) {
+  let rows = matrix.length; //  num of rows in matrix
+  let rowLength = matrix[0].length; //  number of columns in first row of matrix
+  let low = 0, high = rows * rowLength - 1;
+
+  while(low <= high) {
+    let middle = Math.floor((low + high) / 2);
+    let row = Math.floor(middle / rowLength);
+    let column = middle % rowLength;
+    let middleVal = matrix[row][column];
+    console.log(middleVal)
+    if(middleVal === target) {
+      return true;
+    } else if (middleVal < target) { //get right half of matrix
+        low = middle + 1
+    } else { //mid val is greater than so we get the left half
+        high = middle - 1
+    }
+  }
+  return false;
 };
+
+
+const matrix1 = [[1,3,5,7],[10,11,16,20],[23,30,34,60]]; 
+const target1 = 13; 
+const target2 = 3;
+console.log(searchMatrix(matrix1, target1))
+console.log(searchMatrix(matrix1, target2))
