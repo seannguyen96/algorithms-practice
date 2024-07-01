@@ -29,6 +29,7 @@ class Solution {
     for (const n of nums) {
       //same as bitwise XOR (res ^= n)
       res = n ^ res;
+      console.log(res)
     }
     return res;
   }
@@ -38,5 +39,5 @@ let arr1 = [7,6,6,7,8];
 let arr2 = [3,2,3];
 
 let solution = new Solution();
-console.log(solution.singleNumber(arr1));
+// console.log(solution.singleNumber(arr1));
 console.log(solution.singleNumber(arr2));
